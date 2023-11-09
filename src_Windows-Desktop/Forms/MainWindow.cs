@@ -266,9 +266,13 @@ namespace TCTableBuilder.Forms
                 {
                     this.ActiveProject.ModelObjectManager.ModelObjectSelectionChanged += this.SelectedModelsChanged;
                 }
+                
                 else
                 {
-                    this.ActiveProject.ModelObjectManager.ModelObjectSelectionChanged -= this.SelectedModelsChanged;
+                    if(this.ActiveProject.ModelObjectManager.ModelObjectSelectionChanged != null)
+                    {
+
+                    }
                 }
             }
         }
