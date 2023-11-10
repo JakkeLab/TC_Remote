@@ -1,0 +1,16 @@
+{
+  "name": "src_electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile" : "tsc "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^27.0.4",
+    "typescript": "^5.2.2"
+  }
+}
