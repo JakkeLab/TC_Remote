@@ -107,6 +107,33 @@ namespace TCTableBuilder.TCcommands
             return result;
         }
 
+        public async Task<List<Model>> GetSelectedModelsAsync(Project project)
+        {
+            var result = new List<Model>();
+            SelectionFilter filter = new SelectionFilter(true);
+
+            List<Model> models = project.ModelManager.GetAllModels().ToList();
+
+            IEnumerable<ModelObject> modelObjects = await project.ModelObjectManager
+                .GetModelObjectsAsync(filter,
+                    Trimble.Connect.Desktop.API.Common.ObjectSelectionMode.HighestLevelAssembliesAndSystems);
+            List<string> uniqueIds = modelObjects
+                .Select(x => x.ModelIdentifier)
+                .Distinct()
+                .ToList();
+            
+            foreach (string uniqueId in uniqueIds)
+            {
+                var model = models.FirstOrDefault(x => x.Identifier == uniqueId);
+                if (model != null)
+                {
+                    result.Add(model);
+                }
+            }
+            
+            return result;
+        }
+
         public void SetPosition(List<Model> models, TransformSet transformSet)
         {
             foreach(Model model in models)

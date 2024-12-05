@@ -151,9 +151,9 @@ namespace TCTableBuilder.Forms
             }
         }
 
-        private void btMove_Click(object sender, EventArgs e)
+        private async void btMove_Click(object sender, EventArgs e)
         {
-            var models = command.GetSelectedModels(this.ActiveProject);
+            var models = await command.GetSelectedModelsAsync(this.ActiveProject);
             var transformX = TransformArg.SetTransform(TransformArg.TransformType.X, cbX.Checked, tbX.Text);
             var transformY = TransformArg.SetTransform(TransformArg.TransformType.Y, cbY.Checked, tbY.Text);
             var transformZ = TransformArg.SetTransform(TransformArg.TransformType.Z, cbZ.Checked, tbZ.Text);
@@ -269,10 +269,7 @@ namespace TCTableBuilder.Forms
                 
                 else
                 {
-                    if(this.ActiveProject.ModelObjectManager.ModelObjectSelectionChanged != null)
-                    {
 
-                    }
                 }
             }
         }
